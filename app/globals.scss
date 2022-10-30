@@ -1,3 +1,18 @@
+@import 'styles/mixins.scss';
+@import './reset.scss';
+
+:root {
+  font-size: 16px;
+  --catechism-border: #333;
+  --heading-color: #000;
+  --not-important-text: #000;
+
+  @include darkTheme {
+    --сatechism-border: #aaa;
+    --heading-color: #fff;
+    --not-important-text: #666;
+  }
+}
 html,
 body {
   padding: 0;
@@ -6,21 +21,66 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
+@include darkTheme {
   html {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: #aaa;
+    background: #141414;
   }
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--heading-color);
+  margin-bottom: 1em;
+  @include desktop {
+    font-size: 3.5rem;
+  }
+}
+
+h2 {
+  font-weight: bolder;
+}
+
+.container {
+  padding: 0 2rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.сatechism {
+  position: relative;
+  padding: 1em 2em 2em;
+  border: 1px solid var(--catechism-border);
+  margin: 1.5em 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  label {
+    margin-bottom: 0.5em;
+    color: var(--not-important-text);
+  }
+  dt, dd {
+    padding-left: 1em;
+    font-size: larger;
+    margin: 0.5em 0;
+  }
+
+  &:after {
+    display: block;
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    color: var(--not-important-text);
+    white-space: nowrap;
+    content: 'Вестмінстерський Короткий Катехизм';
+  }
+}
+
+p {
+  line-height: 1.25;
+}
+
+strong {
+  font-weight: bolder;
 }
